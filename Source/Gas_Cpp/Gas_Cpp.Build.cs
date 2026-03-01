@@ -19,7 +19,8 @@ public class Gas_Cpp : ModuleRules
 			"GameplayStateTreeModule",
 			"UMG",
 			"GameplayAbilities",
-			"GameplayTasks",
+            "GameplayTags",
+            "GameplayTasks",
 			"Slate"
 		});
 
