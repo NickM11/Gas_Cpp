@@ -23,6 +23,7 @@ UAbilitySystemComponent* AGASActor::GetAbilitySystemComponent() const
 // Called when the game starts or when spawned
 void AGASActor::BeginPlay()
 {
+	GASComponent->InitAbilityActorInfo(this,this);
 	Super::BeginPlay();
 	
 }
@@ -32,5 +33,15 @@ void AGASActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+bool AGASActor::ActivateDashAbility()
+{
+	if (!TestDashAbility) return false;
+
+	FGameplayAbilitySpecHandle Handle = GASComponent->GiveAbility(
+		FGameplayAbilitySpec(TestDashAbility, 1, 0));
+
+	return GASComponent->TryActivateAbility(Handle);
 }
 

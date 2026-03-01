@@ -7,6 +7,7 @@
 #include "AbilitySystemInterface.h"
 #include "AbilitySystemComponent.h"      // Add this
 #include "GasTestAttributeSet.h"         // Add this
+#include "MyTestDashAbility.h"
 #include "GASActor.generated.h"
 
 UCLASS()
@@ -18,7 +19,7 @@ public:
 	// Sets default values for this actor's properties
 	AGASActor();
 
-	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	
 
 protected:
 	// Called when the game starts or when spawned
@@ -31,8 +32,15 @@ protected:
 
 	UGasTestAttributeSet* GasTestAttributeSet;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Abilities")
+	TSubclassOf<UMyTestDashAbility> TestDashAbility;
+
 public:	
 	// Called every frame
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION(BlueprintCallable)
+	bool ActivateDashAbility();
 
 };
